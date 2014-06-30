@@ -9,6 +9,10 @@ public class Alarm
 
     private boolean alarmOn = false;
 
+    public Alarm(Sensor sensor){
+        this.sensor = sensor;
+    }
+
     public void check()
     {
         double psiPressureValue = sensor.popNextPressurePsiValue();
@@ -21,6 +25,6 @@ public class Alarm
 
     public boolean isAlarmOn()
     {
-        return alarmOn; 
+        return alarmOn;
     }
 }
