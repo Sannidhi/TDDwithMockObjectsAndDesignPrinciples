@@ -15,19 +15,22 @@ public class UnicodeFileToHtmlTextConverter
         this.fullFilenameWithPath = fullFilenameWithPath;
     }
 
-    public String convertToHtml() throws IOException{
-    
-	    BufferedReader reader = new BufferedReader(new FileReader(fullFilenameWithPath));
-	    
-	    String line = reader.readLine();
-	    String html = "";
-	    while (line != null)
-	    {
-	            html += StringEscapeUtils.escapeHtml4(line);
-	            html += "<br />";
-	            line = reader.readLine();
-	    }
-	    return html;
+    public UnicodeFileToHtmlTextConverter() {}
 
+    public String readFromFileAndConvertToHtml() throws IOException{
+	    BufferedReader reader = new BufferedReader(new FileReader(fullFilenameWithPath));
+        return convertToHtml(reader);
+    }
+
+    public String convertToHtml(BufferedReader reader) throws IOException {
+	    String line = reader.readLine();
+        String html = "";
+        while (line != null)
+        {
+                html += StringEscapeUtils.escapeHtml4(line);
+                html += "<br />";
+                line = reader.readLine();
+        }
+        return html;
     }
 }
